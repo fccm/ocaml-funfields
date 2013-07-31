@@ -1,0 +1,7 @@
+description = "functional bit field library"
+version = "@VERSION@"
+exists_if = "bits.cma"
+archive(byte) = "bits.cma"
+archive(native) = "bits.cmxa"
+archive(byte, plugin) = "bits.cma"
+archive(native, plugin) = "bits.cmxs"

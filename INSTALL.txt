@@ -1,0 +1,17 @@
+=== How to compile and install ===
+
+1) to compile the sources to bytecode:
+$ make lib
+
+2) to compile the sources to native code:
+$ make opt
+
+3) install using findlib (requires that you already installed it):
+$ make findinstall
+
+4) to generate the api documentation in the HTML format:
+$ make doc
+
+5) to test using bits.cma already compiled in the 'src' directory:
+$ make test LIB_DIR=../src
+
