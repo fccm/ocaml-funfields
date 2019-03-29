@@ -143,6 +143,38 @@ let test10 () =
     Printf.eprintf "bits: %s\n" (Bits.string_of_bits b);
   end
 
+let test11 () =
+  let bits = Bits.set_bits Bits.zero [54; 48; 21; 13; 7] in
+  let res = ref [] in
+  let f i b =
+    if b then res := i :: !res
+  in
+  Bits.iteri f bits;
+  if !res = [54; 48; 21; 13; 7] then begin
+    Printf.printf "Test iteri: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test iteri: ERROR\n";
+    Printf.eprintf "bits: %s\n" (Bits.string_of_bits bits);
+  end
+
+let test12 () =
+  let b1 = Bits.set_bits Bits.zero [62; 54; 48; 32; 21; 15; 13; 7; 3] in
+  let f i b = if i < 60 then not b else false in
+  let b2 = Bits.mapi f b1 in
+  if Bits.eq b2 (Bits.of_string
+    "0011111011111011111111111111101_1111111110111110101111101110111")
+  then begin
+    Printf.printf "Test mapi: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test mapi: ERROR\n";
+    Printf.eprintf "bits1: %s\n" (Bits.string_of_bits b1);
+    Printf.eprintf "bits2: %s\n" (Bits.string_of_bits b2);
+  end
+
 let () =
   test1 ();
   test2 ();
@@ -154,5 +186,7 @@ let () =
   test8 ();
   test9 ();
   test10 ();
+  test11 ();
+  test12 ();
   exit !exit_code;
 ;;

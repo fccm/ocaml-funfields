@@ -37,6 +37,10 @@ val bits_or : t -> t -> t
 
 val bits_xor : t -> t -> t
 
+val iteri : (int -> bool -> unit) -> t -> unit
+
+val mapi : (int -> bool -> bool) -> t -> t
+
 (** {4 Debug} *)
 
 val string_of_bits : t -> string

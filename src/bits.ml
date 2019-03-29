@@ -109,6 +109,27 @@ let bits_and b1 b2 =
   let b = bits_and b1 b2 in
   (rem_null b)
 
+let iteri f b =
+  let n = List.length b in
+  let n2 = n * nb in
+  for i = 0 to pred n2 do
+    f i (is_bit_set b i)
+  done
+
+let mapi f b =
+  let n = List.length b in
+  let n2 = n * nb in
+  let rec aux i r =
+    if i = n2 then r else
+    let r =
+      if f i (is_bit_set b i)
+      then set_bit r i
+      else r
+    in
+    aux (i+1) r
+  in
+  aux 0 zero
+
 let rec _bits acc d =
   if d = 0 then acc
   else _bits ((d land 1)::acc) (d lsr 1)
