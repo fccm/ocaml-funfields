@@ -1,0 +1,6 @@
+*.[oa]
+*.cm[ioxa]
+*.cmx[as]
+_*
+*~
+src/doc/*
