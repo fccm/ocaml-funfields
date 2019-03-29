@@ -111,6 +111,38 @@ let test8 () =
     Printf.eprintf "bits2: %s\n" (Bits.to_string b2);
   end
 
+let test9 () =
+  let b = Bits.set_bits Bits.zero [54; 48; 21; 13; 7] in
+  let res1 = Bits.is_bit_set b 7 in
+  let res2 = Bits.is_bit_set b 21 in
+  let res3 = Bits.is_bit_set b 48 in
+  let res4 = Bits.is_bit_set b 54 in
+  let res5 = Bits.is_bit_set b 6 in
+  let res6 = Bits.is_bit_set b 52 in
+  if res1 = true && res2 = true && res3 = true && res4 = true
+  && res5 = false && res6 = false then begin
+    Printf.printf "Test is_bit_set: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test is_bit_set: ERROR\n";
+    Printf.eprintf "bits: %s\n" (Bits.string_of_bits b);
+  end
+
+let test10 () =
+  let b = Bits.set_bits Bits.zero [54; 48; 21; 13; 7] in
+  let res1 = Bits.are_bits_set b [7; 21; 48; 54] in
+  let res2 = Bits.are_bits_set b [6; 52] in
+  let res3 = Bits.are_bits_set b [6; 7; 13; 14] in
+  if res1 = true && res2 = false && res3 = false then begin
+    Printf.printf "Test are_bits_set: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test are_bits_set: ERROR\n";
+    Printf.eprintf "bits: %s\n" (Bits.string_of_bits b);
+  end
+
 let () =
   test1 ();
   test2 ();
@@ -120,5 +152,7 @@ let () =
   test6 ();
   test7 ();
   test8 ();
+  test9 ();
+  test10 ();
   exit !exit_code;
 ;;
