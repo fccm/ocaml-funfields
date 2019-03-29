@@ -3,7 +3,6 @@ OCAMLC = ocamlc
 OCAMLOPT = ocamlopt
 OCAMLDOC = ocamldoc
 OCAMLFIND = ocamlfind
-VERSION = devel
 DOCDIR = doc
 MKDIR = mkdir -p
 
@@ -31,9 +30,6 @@ opt: bits.cmxa
 
 %.cmxs: %.cmxa
 	$(OCAMLOPT) -shared -linkall -o $@ $<
-
-META: META.in
-	sed -e 's/@VERSION@/$(VERSION)/g' $< > $@
 
 .PHONY: findinstall
 findinstall:
