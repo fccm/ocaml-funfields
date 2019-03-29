@@ -45,8 +45,8 @@ let test4 () =
   let b1 = Bits.set_bits Bits.zero [2;3;30;44;50;51] in
   let b2 = Bits.set_bits Bits.zero [2;3;33;48;55] in
   let b3 = Bits.bits_or b1 b2 in
-  if (Bits.to_string b3) =
-    "0000001000110100010000000000100_1000000000000000000000000001100"
+  if Bits.eq b3 (Bits.of_string
+    "0000001000110100010000000000100_1000000000000000000000000001100")
   then Printf.printf "Test OR: OK\n"
   else begin
     exit_code := 1;
@@ -60,7 +60,7 @@ let test5 () =
   let b1 = Bits.set_bits Bits.zero [2;3;30;44;50;51] in
   let b2 = Bits.set_bits Bits.zero [2;3;33;48;55] in
   let b3 = Bits.bits_and b1 b2 in
-  if (Bits.to_string b3) = "0000000000000000000000000001100"
+  if Bits.eq b3 (Bits.of_string "0000000000000000000000000001100")
   then Printf.printf "Test AND: OK\n"
   else begin
     exit_code := 1;
