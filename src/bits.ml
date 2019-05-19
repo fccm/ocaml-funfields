@@ -130,6 +130,19 @@ let mapi f b =
   in
   aux 0 zero
 
+let invert b len =
+  let rec set d n =
+    if n <= 0 then d
+    else set ((d lsl 1) lor 1) (n-1)
+  in
+  let rec aux n = function
+  | [] -> []
+  | b::bs ->
+      if n > nb then (lnot b) :: aux (n - nb) bs
+      else (b lxor (set 0 n)) :: bs
+  in
+  aux len b
+
 let rec _bits acc d =
   if d = 0 then acc
   else _bits ((d land 1)::acc) (d lsr 1)

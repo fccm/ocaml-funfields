@@ -37,6 +37,9 @@ val bits_or : t -> t -> t
 
 val bits_xor : t -> t -> t
 
+val invert : t -> int -> t
+(** [invert b length] inverts the bits up to [length] bits *)
+
 val iteri : (int -> bool -> unit) -> t -> unit
 
 val mapi : (int -> bool -> bool) -> t -> t

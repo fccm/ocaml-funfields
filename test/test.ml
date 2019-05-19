@@ -175,6 +175,22 @@ let test12 () =
     Printf.eprintf "bits2: %s\n" (Bits.string_of_bits b2);
   end
 
+let test13 () =
+  let b1 = (Bits.of_string
+    "0011111001111000011110011111101_1111111100111110101111101110111") in
+  let b2 = Bits.invert b1 60 in
+  if Bits.eq b2 (Bits.of_string
+    "0000000110000111100001100000010_0000000011000001010000010001000")
+  then begin
+    Printf.printf "Test invert: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test invert: ERROR\n";
+    Printf.eprintf "bits1: %s\n" (Bits.string_of_bits b1);
+    Printf.eprintf "bits2: %s\n" (Bits.string_of_bits b2);
+  end
+
 let () =
   test1 ();
   test2 ();
@@ -188,5 +204,6 @@ let () =
   test10 ();
   test11 ();
   test12 ();
+  test13 ();
   exit !exit_code;
 ;;
