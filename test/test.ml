@@ -191,6 +191,34 @@ let test13 () =
     Printf.eprintf "bits2: %s\n" (Bits.string_of_bits b2);
   end
 
+let test14 () =
+  let b1 = (Bits.of_int 0b0010000001100011100000111100011) in
+  let b2 = (Bits.of_string "0010000001100011100000111100011") in
+  if Bits.eq b1 b2
+  then begin
+    Printf.printf "Test of_int: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test of_int: ERROR\n";
+    Printf.eprintf "bits1: %s\n" (Bits.string_of_bits b1);
+    Printf.eprintf "bits2: %s\n" (Bits.string_of_bits b2);
+  end
+
+let test15 () =
+  let d1 = Bits.to_int (Bits.of_string "0010000001100011100000111100011") in
+  let d2 = 0b0010000001100011100000111100011 in
+  if d1 = d2
+  then begin
+    Printf.printf "Test to_int: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test to_int: ERROR\n";
+    Printf.eprintf "int1: %d\n" d1;
+    Printf.eprintf "int2: %d\n" d2;
+  end
+
 let () =
   test1 ();
   test2 ();
@@ -205,5 +233,7 @@ let () =
   test11 ();
   test12 ();
   test13 ();
+  test14 ();
+  test15 ();
   exit !exit_code;
 ;;

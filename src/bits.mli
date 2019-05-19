@@ -44,6 +44,9 @@ val iteri : (int -> bool -> unit) -> t -> unit
 
 val mapi : (int -> bool -> bool) -> t -> t
 
+val of_int : int -> t
+val to_int : t -> int
+
 (** {4 Debug} *)
 
 val string_of_bits : t -> string

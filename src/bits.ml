@@ -19,6 +19,10 @@ let all = (lnot 0)
 (* number of bits in ocaml ints *)
 let nb = Sys.word_size - 1
 
+let of_int d = d::[]
+let to_int = function d::[] -> d
+  | _ -> failwith "Bits.to_int: too many bits to fit in an int"
+
 let subset_bits bs1 bs2 =
   let rec aux = function
   | (b1::bs1), (b2::bs2) ->
