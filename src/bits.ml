@@ -20,7 +20,7 @@ let all = (lnot 0)
 let nb = Sys.word_size - 1
 
 let of_int d = d::[]
-let to_int = function d::[] -> d
+let to_int = function d::[] -> d | [] -> 0
   | _ -> failwith "Bits.to_int: too many bits to fit in an int"
 
 let subset_bits bs1 bs2 =
