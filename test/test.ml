@@ -219,6 +219,23 @@ let test15 () =
     Printf.eprintf "int2: %d\n" d2;
   end
 
+let test16 () =
+  let r =
+    Bits.foldi
+      (fun i b n -> if b then succ n else n)
+      0 (Bits.of_int 0b0111010111010110001111100101110)
+  in
+  if r = 19
+  then begin
+    Printf.printf "Test foldi: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test foldi: ERROR\n";
+    Printf.eprintf "result: %d\n" r;
+    Printf.eprintf "should: 19\n";
+  end
+
 let () =
   test1 ();
   test2 ();
@@ -235,5 +252,6 @@ let () =
   test13 ();
   test14 ();
   test15 ();
+  test16 ();
   exit !exit_code;
 ;;

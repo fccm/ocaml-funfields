@@ -138,6 +138,15 @@ let mapi f b =
   in
   aux 0 zero
 
+let foldi f acc b =
+  let n = List.length b in
+  let n2 = n * nb in
+  let rec aux i acc =
+    if i = n2 then acc
+    else aux (i+1) (f i (is_bit_set b i) acc)
+  in
+  aux 0 acc
+
 let invert b len =
   let rec set d n =
     if n <= 0 then d

@@ -46,6 +46,8 @@ val iteri : (int -> bool -> unit) -> t -> unit
 
 val mapi : (int -> bool -> bool) -> t -> t
 
+val foldi : (int -> bool -> 'a -> 'a) -> 'a -> t -> 'a
+
 (** {4 Convertions} *)
 
 val of_int : int -> t
