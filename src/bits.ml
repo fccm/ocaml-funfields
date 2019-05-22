@@ -56,6 +56,18 @@ let rec unset_bit b i =
       | 0 -> bs
       | b -> b :: bs
 
+let rec rev_rem = function
+  | 0 :: bs -> rev_rem bs
+  | bs -> bs
+
+(* remove higher words if null *)
+let rem_null bs =
+  List.rev (rev_rem (List.rev bs))
+
+let unset_bit b i =
+  let r = unset_bit b i in
+  (rem_null r)
+
 let set_bits b bits =
   List.fold_left set_bit b bits
 
@@ -73,14 +85,6 @@ let rec eq b1 b2 =
   | ([], b::bs)
   | (b::bs, []) ->
       b = 0 && eq [] bs
-
-let rec rev_rem = function
-  | 0 :: bs -> rev_rem bs
-  | bs -> bs
-
-(* remove higher words if null *)
-let rem_null bs =
-  List.rev (rev_rem (List.rev bs))
 
 let rec bits_or b1 b2 =
   match (b1, b2) with
