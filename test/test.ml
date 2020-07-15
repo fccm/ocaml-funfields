@@ -242,11 +242,48 @@ let test17 () =
   let b2 = Bits.set_bits Bits.zero [41; 22; 31; 12; 7; 4] in
   let res = Bits.shift_left b1 1 in
   if Bits.eq res b2 then begin
-    Printf.printf "Test shilf_left: OK\n";
+    Printf.printf "Test shilf_left 1: OK\n";
   end
   else begin
     exit_code := 1;
-    Printf.eprintf "Test shilf_left: ERROR\n";
+    Printf.eprintf "Test shilf_left 1: ERROR\n";
+    Printf.eprintf "bits1: %s\n" (Bits.string_of_bits b1);
+    Printf.eprintf "bits2: %s\n" (Bits.string_of_bits b2);
+    Printf.eprintf "result %s\n" (Bits.string_of_bits res);
+  end
+
+let test18 () =
+  (* bit 30 is the tricky one! *)
+  let bits = [40; 39; 30; 19; 11; 6; 4; 3] in
+  let n = 5 in
+  let shifted = List.map ((+) n) bits in
+  let b1 = Bits.set_bits Bits.zero bits in
+  let b2 = Bits.set_bits Bits.zero shifted in
+  let res = Bits.shift_left b1 n in
+  if Bits.eq res b2 then begin
+    Printf.printf "Test shilf_left 2: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test shilf_left 2: ERROR\n";
+    Printf.eprintf "bits1: %s\n" (Bits.string_of_bits b1);
+    Printf.eprintf "bits2: %s\n" (Bits.string_of_bits b2);
+    Printf.eprintf "result %s\n" (Bits.string_of_bits res);
+  end
+
+let test19 () =
+  let bits = [30; 19; 11; 6; 4; 3] in
+  let n = 21 in
+  let shifted = List.map ((+) n) bits in
+  let b1 = Bits.set_bits Bits.zero bits in
+  let b2 = Bits.set_bits Bits.zero shifted in
+  let res = Bits.shift_left b1 n in
+  if Bits.eq res b2 then begin
+    Printf.printf "Test shilf_left 3: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test shilf_left 3: ERROR\n";
     Printf.eprintf "bits1: %s\n" (Bits.string_of_bits b1);
     Printf.eprintf "bits2: %s\n" (Bits.string_of_bits b2);
     Printf.eprintf "result %s\n" (Bits.string_of_bits res);
@@ -270,5 +307,7 @@ let () =
   test15 ();
   test16 ();
   test17 ();
+  test18 ();
+  test19 ();
   exit !exit_code;
 ;;
