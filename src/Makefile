@@ -9,7 +9,7 @@ MKDIR = mkdir -p
 .PHONY: all lib opt
 all: lib opt
 lib: bits.cma
-opt: bits.cmxa
+opt: bits.cmxa bits.cmxs
 
 .SECONDARY:
 
