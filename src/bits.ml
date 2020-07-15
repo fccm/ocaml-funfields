@@ -118,15 +118,25 @@ let bits_and b1 b2 =
   (rem_null b)
 
 let shift_left b n =
-  let rec aux pn = function
-    | [] -> []
-    | b::bs ->
-        let pass_next = (b land 0b1000000000000000000000000000000) <> 0 in
-        if pn
-        then ((b lsl n) lor 0b1) :: (aux pass_next bs)
-        else (b lsl n) :: (aux pass_next bs)
+  let rec aux b_prev = function
+    | [] ->
+        begin match b_prev with
+        | None -> []
+        | Some _b -> [_b]
+        end
+
+    | b :: bs ->
+        let b_next = b lsr (nb - n) in
+        let shifted =
+          match b_prev with
+          | None -> (b lsl n)
+          | Some _b -> (b lsl n) lor _b
+        in
+        if b_next = 0
+        then shifted :: (aux None bs)
+        else shifted :: (aux (Some b_next) bs)
   in
-  aux false b
+  aux None b
 
 let iteri f b =
   let n = List.length b in
