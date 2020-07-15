@@ -1,5 +1,5 @@
 description = "functional bit field library"
-version = "0.03"
+version = "0.04"
 exists_if = "bits.cma"
 archive(byte) = "bits.cma"
 archive(native) = "bits.cmxa"
