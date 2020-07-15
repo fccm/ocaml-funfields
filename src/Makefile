@@ -33,11 +33,11 @@ opt: bits.cmxa bits.cmxs
 
 .PHONY: findinstall
 findinstall:
-	$(OCAMLFIND) install funbits META *.cma *.cmx[as] *.cmi *.mli *.a
+	$(OCAMLFIND) install funfields META *.cma *.cmx[as] *.cmi *.mli *.a
 
 .PHONY: finduninstall
 finduninstall:
-	$(OCAMLFIND) remove funbits
+	$(OCAMLFIND) remove funfields
 
 .PHONY: doc
 doc:

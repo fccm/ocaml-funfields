@@ -1,6 +1,6 @@
 OCAML = ocaml
 #LIB_DIR = ../src
-LIB_DIR = +funbits
+LIB_DIR = +funfields
 LIB_INC = -I $(LIB_DIR)
 
 .PHONY: test
