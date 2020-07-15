@@ -40,6 +40,10 @@ val bits_xor : t -> t -> t
 val invert : t -> int -> t
 (** [invert b length] inverts the bits up to [length] bits *)
 
+(** {4 Shifts} *)
+
+val shift_left : t -> int -> t
+
 (** {4 Iterators} *)
 
 val iteri : (int -> bool -> unit) -> t -> unit

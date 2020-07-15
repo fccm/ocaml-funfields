@@ -236,6 +236,22 @@ let test16 () =
     Printf.eprintf "should: 19\n";
   end
 
+let test17 () =
+  (* bit 30 is the tricky one! *)
+  let b1 = Bits.set_bits Bits.zero [40; 21; 30; 11; 6; 3] in
+  let b2 = Bits.set_bits Bits.zero [41; 22; 31; 12; 7; 4] in
+  let res = Bits.shift_left b1 1 in
+  if Bits.eq res b2 then begin
+    Printf.printf "Test shilf_left: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test shilf_left: ERROR\n";
+    Printf.eprintf "bits1: %s\n" (Bits.string_of_bits b1);
+    Printf.eprintf "bits2: %s\n" (Bits.string_of_bits b2);
+    Printf.eprintf "result %s\n" (Bits.string_of_bits res);
+  end
+
 let () =
   test1 ();
   test2 ();
@@ -253,5 +269,6 @@ let () =
   test14 ();
   test15 ();
   test16 ();
+  test17 ();
   exit !exit_code;
 ;;

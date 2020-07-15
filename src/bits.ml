@@ -117,6 +117,17 @@ let bits_and b1 b2 =
   let b = bits_and b1 b2 in
   (rem_null b)
 
+let shift_left b n =
+  let rec aux pn = function
+    | [] -> []
+    | b::bs ->
+        let pass_next = (b land 0b1000000000000000000000000000000) <> 0 in
+        if pn
+        then ((b lsl n) lor 0b1) :: (aux pass_next bs)
+        else (b lsl n) :: (aux pass_next bs)
+  in
+  aux false b
+
 let iteri f b =
   let n = List.length b in
   let n2 = n * nb in
