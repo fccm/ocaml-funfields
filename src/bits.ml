@@ -117,7 +117,7 @@ let bits_and b1 b2 =
   let b = bits_and b1 b2 in
   (rem_null b)
 
-let shift_left b n =
+let _shift_left b n =
   let rec aux b_prev = function
     | [] ->
         begin match b_prev with
@@ -137,6 +137,14 @@ let shift_left b n =
         else shifted :: (aux (Some b_next) bs)
   in
   aux None b
+
+let shift_left b n =
+  let rec aux b n =
+    if n > nb
+    then aux (_shift_left b nb) (n - nb)
+    else _shift_left b n
+  in
+  aux b n
 
 let iteri f b =
   let n = List.length b in
