@@ -29,6 +29,6 @@ run-test: [
 ]
 
 url {
-  src: "https://github.com/fccm/ocaml-funfields/archive/v0.03.tar.gz"
-  checksum: "md5=4de02e969784c4fc2ebdd009a86a0f9d"
+  src: "https://github.com/fccm/ocaml-funfields/archive/v0.04.tar.gz"
+  checksum: "md5=267da55d09dfb78e7d56d65c227afc72"
 }
