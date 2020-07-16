@@ -289,6 +289,24 @@ let test19 () =
     Printf.eprintf "result %s\n" (Bits.string_of_bits res);
   end
 
+let test20 () =
+  let bits = [43; 30; 19; 11; 6; 4; 3] in
+  let n = 41 in
+  let shifted = List.map ((+) n) bits in
+  let b1 = Bits.set_bits Bits.zero bits in
+  let b2 = Bits.set_bits Bits.zero shifted in
+  let res = Bits.shift_left b1 n in
+  if Bits.eq res b2 then begin
+    Printf.printf "Test shilf_left 4: OK\n";
+  end
+  else begin
+    exit_code := 1;
+    Printf.eprintf "Test shilf_left 4: ERROR\n";
+    Printf.eprintf "bits1: %s\n" (Bits.string_of_bits b1);
+    Printf.eprintf "bits2: %s\n" (Bits.string_of_bits b2);
+    Printf.eprintf "result %s\n" (Bits.string_of_bits res);
+  end
+
 let () =
   test1 ();
   test2 ();
@@ -309,5 +327,6 @@ let () =
   test17 ();
   test18 ();
   test19 ();
+  test20 ();
   exit !exit_code;
 ;;
